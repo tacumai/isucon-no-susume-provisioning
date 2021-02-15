@@ -27,7 +27,7 @@ resource "google_compute_network" "isucon9q" {
 }
 
 resource "google_compute_subnetwork" "isucon9q" {
-  name          = "${var.title}-subnetwork"
+  name          = "${var.title}-${var.team_name}-subnetwork"
   ip_cidr_range = "10.2.0.0/16"
   region        = "asia-northeast1"
   network       = google_compute_network.isucon9q.self_link
