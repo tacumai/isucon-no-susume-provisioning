@@ -39,7 +39,7 @@ resource "google_compute_subnetwork" "isucon9q" {
 }
 
 resource "google_compute_firewall" "isucon9q" {
-  name    = "isucon9q-ports"
+  name    = "${var.team_name}-isucon9q-ports"
   network = google_compute_network.isucon9q.self_link
 
   source_ranges = ["0.0.0.0/0"]
