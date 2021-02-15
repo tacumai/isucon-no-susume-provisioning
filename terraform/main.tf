@@ -50,6 +50,7 @@ resource "google_compute_firewall" "isucon9q" {
   allow {
     protocol = "tcp"
     ports    = [
+      "22",
       "3306", # for MySQL
       "5555", # for ISUCARI
       "7000", # for ISUCARI
