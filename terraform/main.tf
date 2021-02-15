@@ -64,7 +64,7 @@ resource "google_compute_address" "isucon9q" {
 }
 
 resource "google_compute_instance" "isucon9q" {
-  name         = "isucon9q"
+  name         = "${var.team_name}-isucon9q"
   machine_type = "n1-standard-1"
   zone         = "asia-northeast1-a"
 
