@@ -22,7 +22,7 @@ provider "google" {
 # リソース構築
 ##########################
 resource "google_compute_network" "isucon9q" {
-  name                    = "${var.title}-vpc-network"
+  name                    = "${var.title}-${var.team_name}-vpc-network"
   auto_create_subnetworks = false
 }
 
