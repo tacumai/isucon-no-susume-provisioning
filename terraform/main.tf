@@ -60,7 +60,7 @@ resource "google_compute_firewall" "isucon9q" {
 }
 
 resource "google_compute_address" "isucon9q" {
-  name         = "isucon9q-sip"
+  name         = "${var.team_name}-isucon9q-sip"
 }
 
 resource "google_compute_instance" "isucon9q" {
@@ -97,8 +97,3 @@ resource "google_compute_instance" "isucon9q" {
   metadata_startup_script = "echo hi > /test.txt"
 }
 
-
-
-# 静的IPアドレスの予約
-# VMインスタンスを作成
-# SSH鍵を設定
