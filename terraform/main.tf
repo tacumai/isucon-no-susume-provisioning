@@ -4,7 +4,7 @@
 variable "team_name" {}
 variable "gcp_project_name" {}
 variable "title" {
-  type = string
+  type    = string
   default = "isucon-no-susume"
 }
 
@@ -49,8 +49,8 @@ resource "google_compute_firewall" "isucon9q" {
 
   allow {
     protocol = "tcp"
-    ports    = [
-      "22",
+    ports = [
+      "22",   # for SSH
       "3306", # for MySQL
       "5555", # for ISUCARI
       "7000", # for ISUCARI
@@ -61,7 +61,7 @@ resource "google_compute_firewall" "isucon9q" {
 }
 
 resource "google_compute_address" "isucon9q" {
-  name         = "${var.team_name}-isucon9q-sip"
+  name = "${var.team_name}-isucon9q-sip"
 }
 
 resource "google_compute_instance" "isucon9q" {
@@ -72,7 +72,7 @@ resource "google_compute_instance" "isucon9q" {
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-1804-lts"
-      size = 20
+      size  = 20
     }
   }
 
@@ -81,12 +81,12 @@ resource "google_compute_instance" "isucon9q" {
   }
 
   network_interface {
-    network = google_compute_network.isucon9q.self_link
+    network    = google_compute_network.isucon9q.self_link
     subnetwork = google_compute_subnetwork.isucon9q.self_link
 
     access_config {
       network_tier = "PREMIUM"
-      nat_ip = google_compute_address.isucon9q.address
+      nat_ip       = google_compute_address.isucon9q.address
     }
   }
 
