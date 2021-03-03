@@ -51,6 +51,7 @@ resource "google_compute_firewall" "isucon9q" {
     protocol = "tcp"
     ports = [
       "22",   # for SSH
+      "80",   # for browser
       "3306", # for MySQL
       "5555", # for ISUCARI
       "7000", # for ISUCARI
@@ -63,6 +64,8 @@ resource "google_compute_firewall" "isucon9q" {
 resource "google_compute_address" "isucon9q" {
   name = "${var.team_name}-isucon9q-sip"
 }
+
+data "google_compute_default_service_account" "isucon9q" {}
 
 resource "google_compute_instance" "isucon9q" {
   name         = "${var.team_name}-isucon9q"
@@ -78,6 +81,11 @@ resource "google_compute_instance" "isucon9q" {
 
   scratch_disk {
     interface = "SCSI"
+  }
+
+  service_account {
+    email  = data.google_compute_default_service_account.isucon9q.email
+    scopes = ["default"]
   }
 
   network_interface {
@@ -97,4 +105,3 @@ resource "google_compute_instance" "isucon9q" {
 
   metadata_startup_script = "echo hi > /test.txt"
 }
-
